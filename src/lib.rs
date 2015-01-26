@@ -11,6 +11,7 @@
 #![crate_type = "rlib"]
 
 extern crate libc;
+extern crate serialize;
 
 use libc::{c_int, size_t};
 use std::mem;
@@ -21,7 +22,7 @@ use std::slice;
 
 pub mod ffi;
 
-
+#[deriving(Decodable, Encodable)]
 pub enum PixelsByColorType {
     K8(Vec<u8>),
     KA8(Vec<u8>),
@@ -29,6 +30,7 @@ pub enum PixelsByColorType {
     RGBA8(Vec<u8>),
 }
 
+#[deriving(Decodable, Encodable)]
 pub struct Image {
     pub width: u32,
     pub height: u32,
